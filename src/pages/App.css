@@ -1,0 +1,77 @@
+body{
+    background-color: black;
+}
+
+#first{
+    height: 10%;
+    background-color: rgb(9, 255, 0);
+}
+
+#container {
+    background-color: rgb(200, 0, 0);
+    height: 250px;
+    width: 350px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    border: 3px solid white;
+    
+}
+
+#home {
+    float: left;
+    width: 50%;
+}
+
+#adopt {
+    float: right;
+    width: 50%;
+    
+}
+
+#notConnect{
+    float: right;
+    margin-top: 30px;
+}
+
+#count{
+    margin-top: 30px;
+    float: left;
+    text-align: left;
+}
+
+#connect{
+    float: left; 
+    margin-top: 10px; 
+    height: 20%;
+}
+
+#newCount{
+   margin-top: 70px;
+    float: right;
+    text-align: right;
+}
+
+#glavni{
+    text-align: center;
+    border-color: white;
+}
+
+#count2{
+    margin-top: 23px;
+    float: left;
+    text-align: left;
+}
+
+#address{
+    width: 50%;
+    float: left;
+}
+
+#balance{
+    float: right;
+    margin-top: 30px;
+}
+
+
