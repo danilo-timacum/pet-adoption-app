@@ -2,76 +2,146 @@ body{
     background-color: black;
 }
 
-#first{
-    height: 10%;
-    background-color: rgb(9, 255, 0);
-}
-
-#container {
-    background-color: rgb(200, 0, 0);
-    height: 250px;
-    width: 350px;
+.container {
+    background-color: rgb(0, 0, 0);
+    height: 280px;
+    width: 380px;
     margin: 0 auto 0 auto;
     text-align: center;
     color: white;
     border-radius: 10px;
-    border: 3px solid white;
     
+    font-family: "Segoe Print";
 }
 
-#home {
+.first{
+width: 380px;
+margin: 0 auto 0 auto;
+}
+
+.home {
     float: left;
     width: 50%;
+    font-family: "Segoe Print";
+    cursor: pointer;
+    border: 2px solid rgb(244, 244, 244);
+    background-color: rgba(118, 118, 118, 0.701);
+    color: rgb(255, 255, 255);
 }
 
-#adopt {
+.home:hover{
+    color: green;
+}
+.adopt {
     float: right;
     width: 50%;
-    
+    font-family: "Segoe Print";
+    cursor: pointer;
+    border: 2px solid rgb(244, 244, 244);
+    background-color: rgba(118, 118, 118, 0.701);
+    color: rgb(255, 255, 255);
 }
-
-#notConnect{
+.adopt:hover{
+    color: green;
+}
+.notConnect{
     float: right;
     margin-top: 30px;
+    margin-right: 10px;
 }
 
-#count{
-    margin-top: 30px;
+.count{
+    margin-top: 14px;
     float: left;
     text-align: left;
 }
 
-#connect{
+.connect{
     float: left; 
     margin-top: 10px; 
     height: 20%;
 }
 
-#newCount{
-   margin-top: 70px;
+.newCount{
+    margin-top: 71px;
     float: right;
     text-align: right;
 }
 
-#glavni{
-    text-align: center;
-    border-color: white;
-}
-
-#count2{
-    margin-top: 23px;
+.count2{
+    margin-top: -2px;
     float: left;
     text-align: left;
 }
 
-#address{
-    width: 50%;
+.address{
+   width: 30%;
     float: left;
+    border-radius: 10px;
+    border: 3px solid rgb(244, 244, 244);
+    background-color: rgba(118, 118, 118, 0.701);
+    color: rgb(255, 255, 255);
+    font-family: "Segoe Print";
+    margin-left: 10px;
+    cursor: pointer;
 }
 
-#balance{
+.balance{
     float: right;
-    margin-top: 30px;
+    margin-top: -54px;
 }
 
+.login{
+    border-radius: 10px;
+    border: 3px solid white;
+    background-color: rgba(118, 118, 118, 0.701);
+    color: rgb(255, 255, 255);
+    font-family: "Segoe Print";
+    cursor: pointer;
+    width: 130px;
+ 
+}
 
+.login:hover{
+    color:green;
+}
+
+.addressButton{
+    width: 100%;
+    background-color: rgba(118, 118, 118, 0);
+    color: rgb(255, 255, 255);
+    font-family: "Segoe Print";
+    border: none;
+    margin-left: -2px;
+    text-align: center;
+    cursor: pointer;
+    
+}
+
+.addressButton:hover{
+    color: green;
+}
+
+#topnav {
+    background-color: rgb(87, 87, 87);
+  }
+  #topnav p,
+  #elements p {
+    margin-left: 5%;
+    width: 10%;
+    text-align: center;
+    font-family: "Segoe Print";
+    font-size: 15px;
+  }
+  
+  #elements,
+  #topnav {
+    margin: 10px auto 0 auto;
+    color: #f2f2f2;
+    font-size: 17px;
+    display: flex;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    width: 90%;
+    font-family: "Segoe Print";
+  }

@@ -1,22 +1,19 @@
-import { configureChains, createClient } from 'wagmi'
-import { goerli, mainnet } from 'wagmi/chains'
+import { createClient, configureChains } from "wagmi";
+import { polygonMumbai, goerli } from "wagmi/chains";
 
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { alchemyProvider } from "wagmi/providers/alchemy";
 
-import { publicProvider } from 'wagmi/providers/public'
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet, ...(process.env.NODE_ENV === 'development' ? [goerli] : [])],
-  [
-    publicProvider(),
-  ],
-)
+  [  polygonMumbai, goerli ],
+  [alchemyProvider({ apiKey: "fAcdEZ9BqpSGZv0ZpoNT6Q5L7xs4RAs5" })]
+);
 
 export const client = createClient({
   autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-  ],
+  connectors: [new MetaMaskConnector({ chains })],
   provider,
   webSocketProvider,
-})
+});

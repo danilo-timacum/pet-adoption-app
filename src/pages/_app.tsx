@@ -4,10 +4,11 @@ import * as React from 'react'
 import { WagmiConfig } from 'wagmi'
 import './App.css'
 import { client } from '../wagmi'
+import { useIsMounted }  from '../Hooks/useIsMounted'
 
 function App({ Component, pageProps }: AppProps) {
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
+ const mounted = useIsMounted();
+ 
   return (
     <WagmiConfig client={client}>
       <NextHead>
