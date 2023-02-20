@@ -1,6 +1,10 @@
-export { Account } from './Account'
-export { Connect } from './Connect'
-export { TaskBar } from './TaskBar'
-export { Label } from './Label'
-export { Balance } from './Balance'
-export { TableTest } from './TableTest'
+export { Account } from "./Account";
+export { Connect } from "./Connect";
+export { TaskBar } from "./TaskBar";
+export { Label } from "./Label";
+export { Balance } from "./Balance";
+export { TableTest } from "./TableTest";
+export { Form } from "./Form";
+export { Maxed } from "./Maxed";
+export { FullTable } from "./FullTable";
+export { MergedForm } from "./MergedForm";
