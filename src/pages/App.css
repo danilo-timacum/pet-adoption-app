@@ -1,147 +1,288 @@
-body{
-    background-color: black;
+body {
+  background-color: black;
 }
 
 .container {
-    background-color: rgb(0, 0, 0);
-    height: 280px;
-    width: 380px;
-    margin: 0 auto 0 auto;
-    text-align: center;
-    color: white;
-    border-radius: 10px;
-    
-    font-family: "Segoe Print";
+  background-color: rgb(0, 0, 0);
+  height: 280px;
+  width: 380px;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+
+  font-family: "Segoe Print";
 }
 
-.first{
-width: 380px;
-margin: 0 auto 0 auto;
+.first {
+  width: 380px;
+  margin: 0 auto 0 auto;
 }
 
 .home {
-    float: left;
-    width: 50%;
-    font-family: "Segoe Print";
-    cursor: pointer;
-    border: 2px solid rgb(244, 244, 244);
-    background-color: rgba(118, 118, 118, 0.701);
-    color: rgb(255, 255, 255);
+  float: left;
+  width: 50%;
+  font-family: "Segoe Print";
+  cursor: pointer;
+  border: 2px solid rgb(244, 244, 244);
+  background-color: rgba(118, 118, 118, 0.701);
+  color: rgb(255, 255, 255);
 }
 
-.home:hover{
-    color: green;
+.home:hover {
+  color: green;
 }
 .adopt {
-    float: right;
-    width: 50%;
-    font-family: "Segoe Print";
-    cursor: pointer;
-    border: 2px solid rgb(244, 244, 244);
-    background-color: rgba(118, 118, 118, 0.701);
-    color: rgb(255, 255, 255);
+  float: right;
+  width: 50%;
+  font-family: "Segoe Print";
+  cursor: pointer;
+  border: 2px solid rgb(244, 244, 244);
+  background-color: rgba(118, 118, 118, 0.701);
+  color: rgb(255, 255, 255);
 }
-.adopt:hover{
-    color: green;
+.adopt:hover {
+  color: green;
 }
-.notConnect{
-    float: right;
-    margin-top: 30px;
-    margin-right: 10px;
-}
-
-.count{
-    margin-top: 14px;
-    float: left;
-    text-align: left;
+.notConnect {
+  float: right;
+  margin-top: 30px;
+  margin-right: 10px;
 }
 
-.connect{
-    float: left; 
-    margin-top: 10px; 
-    height: 20%;
+.count {
+  margin-top: 14px;
+  float: left;
+  text-align: left;
 }
 
-.newCount{
-    margin-top: 71px;
-    float: right;
-    text-align: right;
+.connect {
+  float: left;
+  margin-top: 10px;
+  height: 20%;
 }
 
-.count2{
-    margin-top: -2px;
-    float: left;
-    text-align: left;
+.newCount {
+  margin-top: 71px;
+  float: right;
+  text-align: right;
 }
 
-.address{
-   width: 30%;
-    float: left;
-    border-radius: 10px;
-    border: 3px solid rgb(244, 244, 244);
-    background-color: rgba(118, 118, 118, 0.701);
-    color: rgb(255, 255, 255);
-    font-family: "Segoe Print";
-    margin-left: 10px;
-    cursor: pointer;
+.count2 {
+  margin-top: -2px;
+  float: left;
+  text-align: left;
 }
 
-.balance{
-    float: right;
-    margin-top: -54px;
+.address {
+  width: 30%;
+  float: left;
+  border-radius: 10px;
+  border: 3px solid rgb(244, 244, 244);
+  background-color: rgba(118, 118, 118, 0.701);
+  color: rgb(255, 255, 255);
+  font-family: "Segoe Print";
+  margin-left: 10px;
+  cursor: pointer;
 }
 
-.login{
-    border-radius: 10px;
-    border: 3px solid white;
-    background-color: rgba(118, 118, 118, 0.701);
-    color: rgb(255, 255, 255);
-    font-family: "Segoe Print";
-    cursor: pointer;
-    width: 130px;
- 
+.balance {
+  float: right;
+  margin-top: -54px;
 }
 
-.login:hover{
-    color:green;
+.login {
+  border-radius: 10px;
+  border: 3px solid white;
+  background-color: rgba(118, 118, 118, 0.701);
+  color: rgb(255, 255, 255);
+  font-family: "Segoe Print";
+  cursor: pointer;
+  width: 130px;
 }
 
-.addressButton{
-    width: 100%;
-    background-color: rgba(118, 118, 118, 0);
-    color: rgb(255, 255, 255);
-    font-family: "Segoe Print";
-    border: none;
-    margin-left: -2px;
-    text-align: center;
-    cursor: pointer;
-    
+.login:hover {
+  color: green;
 }
 
-.addressButton:hover{
-    color: green;
+.addressButton {
+  width: 100%;
+  background-color: rgba(118, 118, 118, 0);
+  color: rgb(255, 255, 255);
+  font-family: "Segoe Print";
+  border: none;
+  margin-left: -2px;
+  text-align: center;
+  cursor: pointer;
 }
 
-#topnav {
-    background-color: rgb(87, 87, 87);
-  }
-  #topnav p,
-  #elements p {
-    margin-left: 5%;
-    width: 10%;
-    text-align: center;
-    font-family: "Segoe Print";
-    font-size: 15px;
-  }
-  
-  #elements,
-  #topnav {
-    margin: 10px auto 0 auto;
-    color: #f2f2f2;
-    font-size: 17px;
-    display: flex;
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 5px;
-    width: 90%;
-    font-family: "Segoe Print";
-  }
+.addressButton:hover {
+  color: green;
+}
+
+.tableFixedRow {
+  background-color: rgb(87, 87, 87);
+}
+.tableFixedRow p,
+.petData p {
+  margin-left: 5%;
+  width: 10%;
+  text-align: center;
+  font-family: "Segoe Print";
+  font-size: 15px;
+}
+
+.petData,
+.tableFixedRow {
+  margin: 10px auto 0 auto;
+  color: #f2f2f2;
+  font-size: 17px;
+  display: flex;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 90%;
+  font-family: "Segoe Print";
+}
+
+.dissabledButtons {
+  margin: auto 0 auto 0;
+  border-radius: 10px;
+  border: 3px solid rgb(98, 98, 98);
+  height: 35px;
+  width: 95px;
+  background-color: rgb(32, 32, 32);
+  color: rgb(144, 144, 144);
+  font-family: "Segoe Print";
+  font-size: 15px;
+  margin-left: 5%;
+  font-family: "Segoe Print";
+  font-size: 15px;
+}
+
+.petButtons {
+  margin: auto 0 auto 0;
+  border-radius: 10px;
+  border: 3px solid white;
+  height: 35px;
+  width: 95px;
+  background-color: rgb(118, 118, 118);
+  color: rgb(255, 255, 255);
+  font-family: "Segoe Print";
+  font-size: 15px;
+  margin-left: 5%;
+
+  font-family: "Segoe Print";
+  font-size: 15px;
+}
+
+.container2 {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 25px;
+  width: 330px;
+  height: 470px;
+  padding: 0px 20px 0px 20px;
+}
+
+.formDiv {
+  display: grid;
+  margin-top: 54px;
+}
+
+.adoptionText {
+  font-size: 30px;
+}
+
+.adoptionText,
+.nameField,
+.ageField,
+.speciesField,
+.checkField,
+.connectWarn {
+  font-family: "Segoe Print";
+  color: white;
+}
+
+.inputSpace {
+  float: right;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 2px solid rgb(255, 255, 255);
+  width: 60%;
+  box-sizing: border-box;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.dropDown {
+  float: right;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 2px solid rgb(255, 255, 255);
+  width: 60%;
+  box-sizing: border-box;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.nameField {
+  height: 40px;
+}
+
+.ageField,
+.speciesField,
+.checkField {
+  margin-top: 15px;
+  height: 40px;
+  font-family: "Segoe Print";
+  color: white;
+}
+
+.inputLabel {
+  margin-top: 2%;
+  float: left;
+  width: 20%;
+}
+
+.checkText {
+  margin-top: 6%;
+  float: left;
+  width: 20%;
+}
+
+.myCheck {
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+  margin-left: 20%;
+  float: left;
+  background-color: black;
+}
+
+.connectWarn {
+  margin-top: 40px;
+}
+
+.submit {
+  border-radius: 10px;
+  border: 3px solid white;
+  height: 40px;
+  width: 100px;
+  background-color: rgb(118, 118, 118);
+  color: rgb(255, 255, 255);
+  font-family: "Segoe Print";
+  font-size: 15px;
+}
+
+.bottomText {
+  font-size: 13px;
+  color: white;
+  font-family: "Segoe Print";
+  text-align: center;
+  font-size: 17px;
+}

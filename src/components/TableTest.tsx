@@ -1,19 +1,21 @@
-import { TaskBar } from "./TaskBar"
-export function TableTest (){
-    return (
+import { TaskBar } from "./TaskBar";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+import * as React from "react";
 
-      <div>
-        <TaskBar/>
-        <div id="topnav">
-          <p>id</p>
-          <p>name</p>
-          <p>age</p>
-          <p>species</p>
-          <p>vacced</p>
-          <p>date</p>
-          <p>Action</p>
-        </div>
+export function TableTest() {
+  return (
+    <div>
+      <TaskBar />
+      <div className="tableFixedRow">
+        <p>id</p>
+        <p>name</p>
+        <p>age</p>
+        <p>species</p>
+        <p>vacced</p>
+        <p>date</p>
+        <p>Action</p>
       </div>
-    );
-  
+    </div>
+  );
 }
+export default TableTest;
