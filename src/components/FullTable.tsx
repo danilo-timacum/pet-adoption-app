@@ -1,10 +1,10 @@
-import { useAccount } from "wagmi";
 import React, { useEffect, useState } from "react";
-import { usePrepareContractWrite, useWaitForTransaction } from "wagmi";
-import { useContractWrite } from "wagmi";
-import { TableTest } from "../components";
-import { useContractRead } from "wagmi";
-import { useSigner } from "wagmi";
+import {
+  useAccount,
+  useContractWrite,
+  useContractRead,
+  useSigner,
+} from "wagmi";
 import { ethers } from "ethers";
 import ABI from "./Abi.json";
 export function FullTable() {
@@ -16,7 +16,7 @@ export function FullTable() {
   let name;
   let age;
   let species;
-  let vacced;
+  let vaccinated;
   let creationdateBlock;
   let creationdate;
   let adoptiondate;
@@ -27,7 +27,7 @@ export function FullTable() {
     name: string;
     age: string;
     species: string;
-    vacced: string;
+    vaccinated: string;
     date: string;
     adoptiondate: number;
     owner: string;
@@ -76,7 +76,7 @@ export function FullTable() {
         name = petInstance?.name;
         age = petInstance?.age;
         species = petInstance?.species;
-        vacced = String(petInstance?.vaccinated);
+        vaccinated = String(petInstance?.vaccinated);
         creationdateBlock = Number(petInstance?.createdAt);
         creationdate = new Date(creationdateBlock * 1000).toLocaleDateString(
           "en-US"
@@ -89,7 +89,7 @@ export function FullTable() {
           name: name.toString(),
           age: age.toString(),
           species: species.toString(),
-          vacced: vacced.toString(),
+          vaccinated: vaccinated.toString(),
           date: creationdate.toString(),
           adoptiondate: adoptiondate,
           owner: owner.toString(),
@@ -103,7 +103,7 @@ export function FullTable() {
   }, [exportedCount]);
 
   const petTable = pets.map((Pets) => {
-    const dugme = () => {
+    const adoptButton = () => {
       if (isLoading && Number(Pets.id) === clickedButton)
         return <>adopting in progress</>;
 
@@ -142,9 +142,9 @@ export function FullTable() {
           <p>{Pets.name}</p>
           <p>{Pets.age}</p>
           <p>{Pets.species}</p>
-          <p>{Pets.vacced}</p>
+          <p>{Pets.vaccinated}</p>
           <p>{Pets.date}</p>
-          <p>{dugme()}</p>
+          <p>{adoptButton()}</p>
         </div>
       </div>
     );

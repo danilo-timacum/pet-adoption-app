@@ -1,5 +1,4 @@
 import { TaskBar } from "./TaskBar";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
 import * as React from "react";
 
 export function TableTest() {
