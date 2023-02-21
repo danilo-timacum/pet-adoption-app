@@ -28,6 +28,6 @@ export function MergedForm() {
     home = <Form />;
   }
 
-  return <div class="bottomText">{home}</div>;
+  return <div className="bottomText">{home}</div>;
 }
 export default MergedForm;

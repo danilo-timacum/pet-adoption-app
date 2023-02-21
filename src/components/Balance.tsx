@@ -17,5 +17,5 @@ export function Balance() {
          Balance: {n} {data?.symbol}
     </div>
   )
-  let ba
+ 
 }
