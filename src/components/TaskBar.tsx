@@ -35,6 +35,7 @@ export function TaskBar() {
       },
     ],
   });
+
   let userCount = Number(data?.[2]);
   let bellowCounts;
   if (isConnected) {
@@ -57,7 +58,7 @@ export function TaskBar() {
           <div className="count2">
             <label>
               Total:
-              {isLoading && "loading..."} {isError && "ERROR!"}{" "}
+              {isLoading && "loading..."} {isError && "ERROR!"}
               {isSuccess && Number(data?.[1])}
             </label>
             <br />
@@ -66,7 +67,7 @@ export function TaskBar() {
 
             <label>
               Adopted:
-              {isLoading && "loading..."} {isError && "ERROR!"}{" "}
+              {isLoading && "loading..."} {isError && "ERROR!"}
               {isSuccess && Number(data?.[2])}
             </label>
             <br />
@@ -98,7 +99,7 @@ export function TaskBar() {
           <div className="count">
             <label>
               Total:
-              {isLoading && "loading..."} {isError && "ERROR!"}{" "}
+              {isLoading && "loading..."} {isError && "ERROR!"}
               {isSuccess && Number(data?.[1])}
             </label>
             <br />
@@ -107,7 +108,7 @@ export function TaskBar() {
 
             <label>
               Adopted:
-              {isLoading && "loading..."} {isError && "ERROR!"}{" "}
+              {isLoading && "loading..."} {isError && "ERROR!"}
               {isSuccess && Number(data?.[2])}
             </label>
             <br />
@@ -123,13 +124,13 @@ export function TaskBar() {
           </div>
           <div className="newCount">
             <label>
-              You adopted: {isLoading && "loading..."} {isError && "ERROR!"}{" "}
+              You adopted: {isLoading && "loading..."} {isError && "ERROR!"}
               {isSuccess && Number(data?.[0]?.hasAdopted)}
             </label>
             <br />
             <br />
             <label>
-              You submited: {isLoading && "loading..."} {isError && "ERROR!"}{" "}
+              You submited: {isLoading && "loading..."} {isError && "ERROR!"}
               {isSuccess && Number(data?.[0]?.petsAdded)}
             </label>
           </div>
