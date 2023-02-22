@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
 }
 
 .container {
@@ -279,7 +279,9 @@ body {
   font-size: 15px;
 }
 
-.bottomText {
+.bottomText,
+.fetchingText {
+  padding-top: 30px;
   font-size: 13px;
   color: white;
   font-family: "Segoe Print";

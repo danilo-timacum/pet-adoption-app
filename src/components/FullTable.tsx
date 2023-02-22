@@ -7,11 +7,14 @@ import {
 } from "wagmi";
 import { ethers } from "ethers";
 import ABI from "./Abi.json";
+import { render } from "react-dom";
 export function FullTable() {
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
   const [petId, setPetId] = useState(-1);
   const [clickedButton, SetClickedbutton] = useState(-1);
+  const [pets, setPets] = useState<Pet[]>([]);
+
   let exportedCount;
   let name;
   let age;
@@ -21,7 +24,7 @@ export function FullTable() {
   let creationdate;
   let adoptiondate;
   let owner;
-  const [pets] = useState<Pet[]>([]);
+
   type Pet = {
     id: string;
     name: string;
@@ -60,7 +63,6 @@ export function FullTable() {
   };
 
   useEffect(() => {
-    console.log(petId);
     write();
   }, [petId]);
 
@@ -84,16 +86,19 @@ export function FullTable() {
         adoptiondate = Number(petInstance?.adoptedAt);
         owner = petInstance?.currentOwner;
 
-        pets.push({
-          id: i.toString(),
-          name: name.toString(),
-          age: age.toString(),
-          species: species.toString(),
-          vaccinated: vaccinated.toString(),
-          date: creationdate.toString(),
-          adoptiondate: adoptiondate,
-          owner: owner.toString(),
-        });
+        setPets((pets) => [
+          ...pets,
+          {
+            id: i.toString(),
+            name: name.toString(),
+            age: age.toString(),
+            species: species.toString(),
+            vaccinated: vaccinated.toString(),
+            date: creationdate.toString(),
+            adoptiondate: adoptiondate,
+            owner: owner.toString(),
+          },
+        ]);
       }
     }
 
@@ -136,25 +141,25 @@ export function FullTable() {
     };
 
     return (
-      <div>
-        <div className="petData">
-          <p>{Pets.id}</p>
-          <p>{Pets.name}</p>
-          <p>{Pets.age}</p>
-          <p>{Pets.species}</p>
-          <p>{Pets.vaccinated}</p>
-          <p>{Pets.date}</p>
-          <p>{adoptButton()}</p>
-        </div>
+      <div className="petData" key={Pets.id}>
+        <p>{Pets.id}</p>
+        <p>{Pets.name}</p>
+        <p>{Pets.age}</p>
+        <p>{Pets.species}</p>
+        <p>{Pets.vaccinated}</p>
+        <p>{Pets.date}</p>
+        <p>{adoptButton()}</p>
       </div>
     );
   });
 
-  return (
-    <div>
-      <div>{petTable}</div>
-    </div>
-  );
+  let renderTable;
+  console.log(pets.length);
+  if (pets.length < exportedCount) {
+    renderTable = <div className="fetchingText">LOADING...</div>;
+  } else if (pets.length == exportedCount) renderTable = petTable;
+
+  return <div>{renderTable}</div>;
 }
 
 export default FullTable;
