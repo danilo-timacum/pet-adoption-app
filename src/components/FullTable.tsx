@@ -7,12 +7,8 @@ export function FullTable() {
   const { address, isConnected } = useAccount();
 
   const [petId, setPetId] = useState(null);
-  const [clickedButton, SetClickedbutton] = useState(null);
+  const [clickedButton, setClickedButton] = useState(null);
   const [pets, setPets] = useState<Pet[]>([]);
-
-  let exportedCount;
-  let tempPets = [];
-  let petInstance;
 
   type Pet = {
     id: string;
@@ -25,6 +21,8 @@ export function FullTable() {
     owner: string;
   };
 
+  let exportedCount;
+
   const petCount = useContractRead({
     address: "0x25d01f0bc600690a11e44d593c34265d50eaeab3",
     abi: ABI,
@@ -32,7 +30,7 @@ export function FullTable() {
   });
   exportedCount = Number(petCount.data);
 
-  const { data, isLoading, isSuccess, write, isError } = useContractWrite({
+  const { isLoading, isSuccess, write, isError } = useContractWrite({
     mode: "recklesslyUnprepared",
     address: "0x25d01F0bc600690A11E44D593C34265d50eAEAb3",
     abi: ABI,
@@ -40,8 +38,8 @@ export function FullTable() {
     args: [petId],
   });
 
-  const handleAdopt = (arg: number) => {
-    setPetId(Number(arg));
+  const handleAdopt = (selectedPetId: number) => {
+    setPetId(selectedPetId);
   };
 
   useEffect(() => {
@@ -49,6 +47,7 @@ export function FullTable() {
   }, [petId]);
 
   useEffect(() => {
+    let tempPets = [];
     async function fetchData() {
       for (let i = 0; i < exportedCount; i++) {
         const data = await readContract({
@@ -58,19 +57,17 @@ export function FullTable() {
           args: [Number(i)],
         });
 
-        petInstance = data;
-
         tempPets.push({
           id: i.toString(),
-          name: petInstance?.name.toString(),
-          age: petInstance?.age.toString(),
-          species: petInstance?.species.toString(),
-          vaccinated: String(petInstance?.vaccinated).toString(),
-          date: new Date((petInstance?.createdAt).toString() * 1000)
+          name: data?.name.toString(),
+          age: data?.age.toString(),
+          species: data?.species.toString(),
+          vaccinated: String(data?.vaccinated).toString(),
+          date: new Date((data?.createdAt).toString() * 1000)
             .toLocaleDateString("en-US")
             .toString(),
-          adoptiondate: Number(petInstance?.adoptedAt),
-          owner: petInstance?.currentOwner.toString(),
+          adoptiondate: Number(data?.adoptedAt),
+          owner: data?.currentOwner.toString(),
         });
       }
       setPets(tempPets);
@@ -99,7 +96,7 @@ export function FullTable() {
               className="petButtons"
               onClick={() => {
                 handleAdopt(Number(Pets.id));
-                SetClickedbutton(Number(Pets.id));
+                setClickedButton(Number(Pets.id));
               }}
             >
               ADOPT

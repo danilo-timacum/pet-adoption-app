@@ -18,3 +18,7 @@ export function Balance() {
     </div>
   );
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 08c19e9ddc6744998047ab006663b67c8e7932af
