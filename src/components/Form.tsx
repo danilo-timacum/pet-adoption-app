@@ -10,9 +10,9 @@ import { useState } from "react";
 import ABI from "./Abi.json";
 
 export function Form() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState();
   const [species, setSpecies] = useState("other");
-  const [age, setAge] = useState("");
+  const [age, setAge] = useState();
   const [vaccinated, setVaccinated] = useState(false);
   const { isConnected } = useAccount();
   const { address } = useAccount();
