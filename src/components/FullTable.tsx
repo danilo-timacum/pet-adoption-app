@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {
-  useAccount,
-  useContractWrite,
-  useContractRead,
-  useSigner,
-} from "wagmi";
+import { readContract } from "@wagmi/core";
+import { useAccount, useContractWrite, useContractRead } from "wagmi";
 import { ethers } from "ethers";
 import ABI from "./Abi.json";
-import { render } from "react-dom";
 export function FullTable() {
   const { address, isConnected } = useAccount();
-  const { data: signer } = useSigner();
-  const [petId, setPetId] = useState(-1);
-  const [clickedButton, SetClickedbutton] = useState(-1);
+
+  const [petId, setPetId] = useState(null);
+  const [clickedButton, SetClickedbutton] = useState(null);
   const [pets, setPets] = useState<Pet[]>([]);
 
   let exportedCount;
-  let name;
-  let age;
-  let species;
-  let vaccinated;
-  let creationdateBlock;
-  let creationdate;
-  let adoptiondate;
-  let owner;
+  let tempPets = [];
+  let petInstance;
 
   type Pet = {
     id: string;
@@ -36,19 +25,12 @@ export function FullTable() {
     owner: string;
   };
 
-  const contractABI = ABI;
-  const contractAddress = "0x25d01f0bc600690a11e44d593c34265d50eaeab3";
-  const [myData, setMyData] = useState(null);
   const petCount = useContractRead({
     address: "0x25d01f0bc600690a11e44d593c34265d50eaeab3",
     abi: ABI,
     functionName: "totalPets",
   });
   exportedCount = Number(petCount.data);
-
-  const provider = new ethers.providers.JsonRpcProvider(
-    "https://rpc-mumbai.maticvigil.com"
-  );
 
   const { data, isLoading, isSuccess, write, isError } = useContractWrite({
     mode: "recklesslyUnprepared",
@@ -66,40 +48,32 @@ export function FullTable() {
     write();
   }, [petId]);
 
-  const contract = new ethers.Contract(contractAddress, contractABI, provider);
-
   useEffect(() => {
     async function fetchData() {
       for (let i = 0; i < exportedCount; i++) {
-        const petInstance = await contract.pets(i);
+        const data = await readContract({
+          address: "0x25d01f0bc600690a11e44d593c34265d50eaeab3",
+          abi: ABI,
+          functionName: "pets",
+          args: [Number(i)],
+        });
 
-        setMyData(petInstance);
+        petInstance = data;
 
-        name = petInstance?.name;
-        age = petInstance?.age;
-        species = petInstance?.species;
-        vaccinated = String(petInstance?.vaccinated);
-        creationdateBlock = Number(petInstance?.createdAt);
-        creationdate = new Date(creationdateBlock * 1000).toLocaleDateString(
-          "en-US"
-        );
-        adoptiondate = Number(petInstance?.adoptedAt);
-        owner = petInstance?.currentOwner;
-
-        setPets((pets) => [
-          ...pets,
-          {
-            id: i.toString(),
-            name: name.toString(),
-            age: age.toString(),
-            species: species.toString(),
-            vaccinated: vaccinated.toString(),
-            date: creationdate.toString(),
-            adoptiondate: adoptiondate,
-            owner: owner.toString(),
-          },
-        ]);
+        tempPets.push({
+          id: i.toString(),
+          name: petInstance?.name.toString(),
+          age: petInstance?.age.toString(),
+          species: petInstance?.species.toString(),
+          vaccinated: String(petInstance?.vaccinated).toString(),
+          date: new Date((petInstance?.createdAt).toString() * 1000)
+            .toLocaleDateString("en-US")
+            .toString(),
+          adoptiondate: Number(petInstance?.adoptedAt),
+          owner: petInstance?.currentOwner.toString(),
+        });
       }
+      setPets(tempPets);
     }
 
     if (pets.length < exportedCount) {
@@ -154,10 +128,10 @@ export function FullTable() {
   });
 
   let renderTable;
-  console.log(pets.length);
+
   if (pets.length < exportedCount) {
     renderTable = <div className="fetchingText">LOADING...</div>;
-  } else if (pets.length == exportedCount) renderTable = petTable;
+  } else renderTable = petTable;
 
   return <div>{renderTable}</div>;
 }

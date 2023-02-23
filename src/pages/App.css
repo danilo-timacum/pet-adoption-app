@@ -281,10 +281,12 @@ body {
 
 .bottomText,
 .fetchingText {
-  padding-top: 30px;
   font-size: 13px;
   color: white;
   font-family: "Segoe Print";
   text-align: center;
   font-size: 17px;
+}
+.fetchingText {
+  padding-top: 30px;
 }
