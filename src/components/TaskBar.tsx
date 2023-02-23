@@ -36,18 +36,6 @@ export function TaskBar() {
     ],
   });
 
-  let userCount = Number(data?.[2]);
-  let bellowCounts;
-  if (isConnected) {
-    if (userCount < 5) {
-      bellowCounts = <Form />;
-    } else {
-      bellowCounts = <Maxed />;
-    }
-  } else {
-    bellowCounts = <Form />;
-  }
-
   return (
     <>
       <Label />
