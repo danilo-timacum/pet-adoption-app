@@ -1,51 +1,36 @@
-import { useAccount } from "wagmi";
 import React, { useEffect, useState } from "react";
-import { usePrepareContractWrite, useWaitForTransaction } from "wagmi";
-import { useContractWrite } from "wagmi";
-import { TableTest } from "../components";
-import { useContractRead } from "wagmi";
-import { useSigner } from "wagmi";
+import { readContract } from "@wagmi/core";
+import { useAccount, useContractWrite, useContractRead } from "wagmi";
 import { ethers } from "ethers";
 import ABI from "./Abi.json";
 export function FullTable() {
   const { address, isConnected } = useAccount();
-  const { data: signer } = useSigner();
-  const [petId, setPetId] = useState(-1);
-  const [clickedButton, SetClickedbutton] = useState(-1);
+
+  const [petId, setPetId] = useState(null);
+  const [clickedButton, SetClickedbutton] = useState(null);
+  const [pets, setPets] = useState<Pet[]>([]);
+
   let exportedCount;
-  let name;
-  let age;
-  let species;
-  let vacced;
-  let creationdateBlock;
-  let creationdate;
-  let adoptiondate;
-  let owner;
-  const [pets] = useState<Pet[]>([]);
+  let tempPets = [];
+  let petInstance;
+
   type Pet = {
     id: string;
     name: string;
     age: string;
     species: string;
-    vacced: string;
+    vaccinated: string;
     date: string;
     adoptiondate: number;
     owner: string;
   };
 
-  const contractABI = ABI;
-  const contractAddress = "0x25d01f0bc600690a11e44d593c34265d50eaeab3";
-  const [myData, setMyData] = useState(null);
   const petCount = useContractRead({
     address: "0x25d01f0bc600690a11e44d593c34265d50eaeab3",
     abi: ABI,
     functionName: "totalPets",
   });
   exportedCount = Number(petCount.data);
-
-  const provider = new ethers.providers.JsonRpcProvider(
-    "https://rpc-mumbai.maticvigil.com"
-  );
 
   const { data, isLoading, isSuccess, write, isError } = useContractWrite({
     mode: "recklesslyUnprepared",
@@ -60,41 +45,35 @@ export function FullTable() {
   };
 
   useEffect(() => {
-    console.log(petId);
     write();
   }, [petId]);
-
-  const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
   useEffect(() => {
     async function fetchData() {
       for (let i = 0; i < exportedCount; i++) {
-        const petInstance = await contract.pets(i);
+        const data = await readContract({
+          address: "0x25d01f0bc600690a11e44d593c34265d50eaeab3",
+          abi: ABI,
+          functionName: "pets",
+          args: [Number(i)],
+        });
 
-        setMyData(petInstance);
+        petInstance = data;
 
-        name = petInstance?.name;
-        age = petInstance?.age;
-        species = petInstance?.species;
-        vacced = String(petInstance?.vaccinated);
-        creationdateBlock = Number(petInstance?.createdAt);
-        creationdate = new Date(creationdateBlock * 1000).toLocaleDateString(
-          "en-US"
-        );
-        adoptiondate = Number(petInstance?.adoptedAt);
-        owner = petInstance?.currentOwner;
-
-        pets.push({
+        tempPets.push({
           id: i.toString(),
-          name: name.toString(),
-          age: age.toString(),
-          species: species.toString(),
-          vacced: vacced.toString(),
-          date: creationdate.toString(),
-          adoptiondate: adoptiondate,
-          owner: owner.toString(),
+          name: petInstance?.name.toString(),
+          age: petInstance?.age.toString(),
+          species: petInstance?.species.toString(),
+          vaccinated: String(petInstance?.vaccinated).toString(),
+          date: new Date((petInstance?.createdAt).toString() * 1000)
+            .toLocaleDateString("en-US")
+            .toString(),
+          adoptiondate: Number(petInstance?.adoptedAt),
+          owner: petInstance?.currentOwner.toString(),
         });
       }
+      setPets(tempPets);
     }
 
     if (pets.length < exportedCount) {
@@ -103,7 +82,7 @@ export function FullTable() {
   }, [exportedCount]);
 
   const petTable = pets.map((Pets) => {
-    const dugme = () => {
+    const adoptButton = () => {
       if (isLoading && Number(Pets.id) === clickedButton)
         return <>adopting in progress</>;
 
@@ -136,25 +115,25 @@ export function FullTable() {
     };
 
     return (
-      <div>
-        <div className="petData">
-          <p>{Pets.id}</p>
-          <p>{Pets.name}</p>
-          <p>{Pets.age}</p>
-          <p>{Pets.species}</p>
-          <p>{Pets.vacced}</p>
-          <p>{Pets.date}</p>
-          <p>{dugme()}</p>
-        </div>
+      <div className="petData" key={Pets.id}>
+        <p>{Pets.id}</p>
+        <p>{Pets.name}</p>
+        <p>{Pets.age}</p>
+        <p>{Pets.species}</p>
+        <p>{Pets.vaccinated}</p>
+        <p>{Pets.date}</p>
+        <p>{adoptButton()}</p>
       </div>
     );
   });
 
-  return (
-    <div>
-      <div>{petTable}</div>
-    </div>
-  );
+  let renderTable;
+
+  if (pets.length < exportedCount) {
+    renderTable = <div className="fetchingText">LOADING...</div>;
+  } else renderTable = petTable;
+
+  return <div>{renderTable}</div>;
 }
 
 export default FullTable;

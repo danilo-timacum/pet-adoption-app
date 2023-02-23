@@ -11,10 +11,10 @@ export function MergedForm() {
     args: [address],
   });
 
-  let b = countRead.data;
+  let exportCount = countRead.data;
 
-  if (isConnected && b != undefined) {
-    userCount = Number(b[1]);
+  if (isConnected && exportCount != undefined) {
+    userCount = Number(exportCount[1]);
   }
   let home;
 

@@ -1,10 +1,13 @@
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import {
+  useAccount,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+  useContractWrite,
+  useContractRead,
+} from "wagmi";
 import * as React from "react";
 import { useState } from "react";
-import { usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import ABI from "./Abi.json";
-import { useContractWrite } from "wagmi";
-import { useContractRead } from "wagmi";
 
 export function Form() {
   const [name, setName] = useState();
