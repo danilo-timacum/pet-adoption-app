@@ -1,5 +1,5 @@
 import { useAccount } from "wagmi";
-import { Maxed, Connect, Label, Balance, Form } from "../components";
+import { Connect, Label, Balance } from "../components";
 import ABI from "./Abi.json";
 import { useContractReads } from "wagmi";
 

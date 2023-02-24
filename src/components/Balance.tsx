@@ -1,5 +1,5 @@
 import { useBalance } from "wagmi";
-import { useAccount, useEnsName } from "wagmi";
+import { useAccount } from "wagmi";
 
 export function Balance() {
   const { address } = useAccount();

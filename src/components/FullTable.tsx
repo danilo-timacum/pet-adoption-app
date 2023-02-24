@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { readContract } from "@wagmi/core";
 import { useAccount, useContractWrite, useContractRead } from "wagmi";
-import { ethers } from "ethers";
 import ABI from "./Abi.json";
 export function FullTable() {
   const { address, isConnected } = useAccount();

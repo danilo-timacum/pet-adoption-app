@@ -1,4 +1,3 @@
-export { Account } from "./Account";
 export { Connect } from "./Connect";
 export { TaskBar } from "./TaskBar";
 export { Label } from "./Label";
