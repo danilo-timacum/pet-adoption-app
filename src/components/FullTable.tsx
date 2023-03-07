@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { TableTest } from "../components";
 import { readContract } from "@wagmi/core";
 import { useAccount, useContractWrite, useContractRead } from "wagmi";
 import { ethers } from "ethers";
 import ABI from "./Abi.json";
+
 export function FullTable() {
   const { address, isConnected } = useAccount();
 
@@ -130,7 +132,10 @@ export function FullTable() {
     renderTable = <div className="fetchingText">LOADING...</div>;
   } else renderTable = petTable;
 
-  return <div>{renderTable}</div>;
+  return <div>
+    <TableTest/> 
+    {renderTable}
+    </div>;
 }
 
 export default FullTable;

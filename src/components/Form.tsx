@@ -9,7 +9,7 @@ import * as React from "react";
 import { useState } from "react";
 import ABI from "./Abi.json";
 
-export function Form() {
+export function Form({setRunReads}) {
   const [name, setName] = useState();
   const [species, setSpecies] = useState("other");
   const [age, setAge] = useState();
@@ -42,6 +42,7 @@ export function Form() {
 
   const { isLoading, isSuccess, isError } = useWaitForTransaction({
     hash: data?.hash,
+    onSuccess(){setRunReads(true)}
   });
 
   let wholeForm;

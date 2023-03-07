@@ -1,13 +1,14 @@
-import { useAccount } from "wagmi";
-import { Maxed, Connect, Label, Balance, Form } from "../components";
+import { useContractReads, useAccount } from "wagmi";
+import { Connect, Label, Balance } from "../components";
+import { useEffect } from "react";
 import ABI from "./Abi.json";
-import { useContractReads } from "wagmi";
+import { UNSAFE_convertRoutesToDataRoutes } from "@remix-run/router";
 
-export function TaskBar() {
+export function TaskBar({runReads, setRunReads}) {
   const { isConnected } = useAccount();
   const { address } = useAccount();
 
-  const { data, isError, isLoading, isSuccess } = useContractReads({
+  const {data, isSuccess, isLoading, isError, refetch} = useContractReads({
     contracts: [
       {
         address: "0x25d01F0bc600690A11E44D593C34265d50eAEAb3",
@@ -33,10 +34,18 @@ export function TaskBar() {
         abi: ABI,
         functionName: "availablePets",
       },
-    ],
+    ], 
   });
 
-  return (
+  useEffect(() => {
+if(runReads){
+  refetch()
+  setRunReads(false)
+  console.log(runReads)
+}
+  }, [runReads, setRunReads]);
+
+return (
     <>
       <Label />
       {!isConnected && (
@@ -124,6 +133,7 @@ export function TaskBar() {
           </div>
         </div>
       )}
-    </>
+    </>   
   );
 }
+export default TaskBar;
