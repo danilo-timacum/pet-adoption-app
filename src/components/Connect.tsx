@@ -1,16 +1,26 @@
-import { isAddress } from "ethers/lib/utils.js";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { Account } from "./Account";
-import React, { useState, useEffect } from "react";
 
 export function Connect() {
   const { connector, isConnected } = useAccount();
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect();
+  const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
   const { disconnect } = useDisconnect();
-  const { address } = useAccount();
 
-  return (
+    const { address } = useAccount();
+    
+    let mainAdr; 
+    let fullAddress ;
+   
+  if (isConnected){
+    const mainAdr = address; 
+  
+    const adr1 = mainAdr.slice(0,4);
+    const adr2 = mainAdr.slice(-3);
+    const adrMidd = '...';
+ 
+    fullAddress = adr1 + adrMidd + adr2;
+  } 
+  
+return (
     <>
       {connectors
         .filter((x) => x.ready && x.id !== connector?.id)
@@ -32,10 +42,11 @@ export function Connect() {
           <input
             className="addressButton"
             type="button"
-            value={address}
+          value= {fullAddress}
           ></input>
         </button>
       )}
     </>
   );
 }
+export default Connect;

@@ -1,7 +1,8 @@
 import { Maxed, Form } from "../components";
 import { useAccount, useContractRead } from "wagmi";
 import ABI from "./Abi.json";
-export function MergedForm() {
+
+export function MergedForm({setRunReads}) {
   const { address, isConnected } = useAccount();
   let userCount;
   const countRead = useContractRead({
@@ -20,12 +21,12 @@ export function MergedForm() {
 
   if (isConnected) {
     if (userCount < 5) {
-      home = <Form />;
+      home = <Form setRunReads={setRunReads}/>;
     } else {
-      home = <Maxed />;
+      home = <Maxed/>;
     }
   } else {
-    home = <Form />;
+    home = <Form setRunReads={setRunReads}/>;
   }
 
   return <div className="bottomText">{home}</div>;

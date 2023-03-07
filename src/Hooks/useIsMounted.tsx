@@ -8,3 +8,4 @@ export function useIsMounted() {
 
   return mounted;
 }
+export default useIsMounted;
